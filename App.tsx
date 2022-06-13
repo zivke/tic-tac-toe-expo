@@ -3,35 +3,7 @@ import { Pressable, StyleSheet, Text, View, Alert, GestureResponderEvent } from 
 import { useState } from "react";
 
 export default function App() {
-  const initialState = {
-    squares: Array(9).fill(''),
-    xIsNext: true,
-    winner: '',
-    clicks: 0,
-  };
   const [ state, setState ] = useState(initialState);
-
-  const calculateWinner = (squares: string[]) => {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
-      }
-    }
-
-    return '';
-  }
 
   const handleRestartClick = () =>
     Alert.alert('Restart Game', 'Are you sure you want to restart the game?', [
@@ -104,6 +76,13 @@ export default function App() {
   );
 }
 
+const initialState = {
+  squares: Array(9).fill(''),
+  xIsNext: true,
+  winner: '',
+  clicks: 0,
+};
+
 const Square = (props: { onPress: ((event: GestureResponderEvent) => void); value: string; }) => {
   return (
   <Pressable
@@ -113,6 +92,28 @@ const Square = (props: { onPress: ((event: GestureResponderEvent) => void); valu
     <Text style={styles.buttonLabel}>{props.value}</Text>
   </Pressable>
   );
+}
+
+const calculateWinner = (squares: string[]) => {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+
+  return '';
 }
 
 const styles = StyleSheet.create({
