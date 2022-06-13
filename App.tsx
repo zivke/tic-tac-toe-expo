@@ -5,15 +5,16 @@ import { useState } from "react";
 export default function App() {
   const [ state, setState ] = useState(initialState);
 
-  const handleRestartClick = () =>
+  function handleRestartClick() {
     Alert.alert('Restart Game', 'Are you sure you want to restart the game?', [
       {
         text: 'Cancel',
       },
       { text: 'OK', onPress: () => setState(initialState) },
     ]);
+  }
 
-  const handleSquareClick = (i: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 ) => {
+  function handleSquareClick(i: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 ) {
     if (state.clicks === 9 || state.squares[i] !== '' || state.winner) {
       return;
     }
@@ -83,7 +84,7 @@ const initialState = {
   clicks: 0,
 };
 
-const Square = (props: { onPress: ((event: GestureResponderEvent) => void); value: string; }) => {
+function Square(props: { onPress: ((event: GestureResponderEvent) => void); value: string; }) {
   return (
   <Pressable
       onPress={props.onPress}
@@ -94,7 +95,7 @@ const Square = (props: { onPress: ((event: GestureResponderEvent) => void); valu
   );
 }
 
-const calculateWinner = (squares: string[]) => {
+function calculateWinner(squares: string[]) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
