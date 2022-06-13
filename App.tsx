@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Pressable, StyleSheet, Text, View, Alert, GestureResponderEvent } from 'react-native';
 import { useState } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   const [ state, setState ] = useState(initialState);
@@ -50,30 +51,32 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-        <View style={dynamicStatusStyle}>
-          <Text style={styles.statusLabel}>{status}</Text>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+          <View style={dynamicStatusStyle}>
+            <Text style={styles.statusLabel}>{status}</Text>
+          </View>
+          <View style={styles.squareRow}>
+            <Square value={state.squares[0]} onPress={() => handleSquareClick(0)} />
+            <Square value={state.squares[1]} onPress={() => handleSquareClick(1)} />
+            <Square value={state.squares[2]} onPress={() => handleSquareClick(2)} />
+          </View>
+          <View style={styles.squareRow}>
+            <Square value={state.squares[3]} onPress={() => handleSquareClick(3)} />
+            <Square value={state.squares[4]} onPress={() => handleSquareClick(4)} />
+            <Square value={state.squares[5]} onPress={() => handleSquareClick(5)} />
+          </View>
+          <View style={styles.squareRow}>
+            <Square value={state.squares[6]} onPress={() => handleSquareClick(6)} />
+            <Square value={state.squares[7]} onPress={() => handleSquareClick(7)} />
+            <Square value={state.squares[8]} onPress={() => handleSquareClick(8)} />
+          </View>
+          <Pressable style={styles.restartButton} onPress={() => handleRestartClick()}>
+            <Text style={styles.restartLabel}>RESTART GAME</Text>
+          </Pressable>
+          <StatusBar hidden={true} />
         </View>
-        <View style={styles.squareRow}>
-          <Square value={state.squares[0]} onPress={() => handleSquareClick(0)} />
-          <Square value={state.squares[1]} onPress={() => handleSquareClick(1)} />
-          <Square value={state.squares[2]} onPress={() => handleSquareClick(2)} />
-        </View>
-        <View style={styles.squareRow}>
-          <Square value={state.squares[3]} onPress={() => handleSquareClick(3)} />
-          <Square value={state.squares[4]} onPress={() => handleSquareClick(4)} />
-          <Square value={state.squares[5]} onPress={() => handleSquareClick(5)} />
-        </View>
-        <View style={styles.squareRow}>
-          <Square value={state.squares[6]} onPress={() => handleSquareClick(6)} />
-          <Square value={state.squares[7]} onPress={() => handleSquareClick(7)} />
-          <Square value={state.squares[8]} onPress={() => handleSquareClick(8)} />
-        </View>
-        <Pressable style={styles.restartButton} onPress={() => handleRestartClick()}>
-          <Text style={styles.restartLabel}>RESTART GAME</Text>
-        </Pressable>
-        <StatusBar hidden={true} />
-      </View>
+      </SafeAreaProvider>
   );
 }
 
