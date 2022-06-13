@@ -61,7 +61,7 @@ export default function App() {
     );
   }
 
-  let status;
+  let status: string;
   let dynamicStatusStyle = Object.assign({}, styles.status);
   if (state.winner !== '') {
     status = 'WINNER: ' + state.winner;
