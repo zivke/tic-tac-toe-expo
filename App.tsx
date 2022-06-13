@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     color: '#000',
-    fontSize: 70,
+    fontSize: 60,
   },
   restartButton: {
     flex: 1,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   restartLabel: {
     color: 'black',
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: 'bold',
   },
 });
